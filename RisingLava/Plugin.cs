@@ -52,7 +52,7 @@ namespace RisingLava
             {
                 string queue = GorillaComputer.instance.currentGameMode;
                 print(queue);
-                if (queue == "RISINGLAVA" && PhotonNetwork.CurrentRoom.PlayerCount > 1)
+                if (queue == "MODDED_RISINGLAVAINFECTION" && PhotonNetwork.CurrentRoom.PlayerCount > 1)
                 {
                     LavaManager.instance.gameObject.SetActive(true);
                     FieldInfo info = AccessTools.Field(typeof(GorillaTagManager), "infectedModeThreshold");
