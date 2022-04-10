@@ -14,17 +14,9 @@ using Bepinject;
 using HarmonyLib;
 
 namespace RisingLava
-{
-    internal class LavaQueue : IQueueInfo
-    {
-        public string DisplayName => "Rising Lava";
-
-        public string Description => "Lava rises. Fall in, and you get tagged.";
-
-        public string QueueName => "RISINGLAVA";
-    }
-    
+{ 
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
+    [ModdedGamemode("RISINGLAVA", "RISING LAVA", Utilla.Models.BaseGamemode.Infection)]
     public class Plugin : BaseUnityPlugin
     {
         public GameObject lavaPrefab;
@@ -36,7 +28,6 @@ namespace RisingLava
 
         void Awake()
 		{
-            Zenjector.Install<MainInstaller>().OnProject();
             HarmonyPatches.ApplyHarmonyPatches();
             print("RISING LAVA AWAKE");
             StartCoroutine(LoadBundles());
@@ -59,7 +50,7 @@ namespace RisingLava
 
             if (PhotonNetwork.InRoom)
             {
-                string queue = GorillaComputer.instance.currentQueue;
+                string queue = GorillaComputer.instance.currentGameMode;
                 print(queue);
                 if (queue == "RISINGLAVA" && PhotonNetwork.CurrentRoom.PlayerCount > 1)
                 {

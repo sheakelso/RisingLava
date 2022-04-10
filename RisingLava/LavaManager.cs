@@ -16,6 +16,16 @@ namespace RisingLava
         Vector3 startPos = new Vector3(-50, -3, -50);
         Vector3 endPos = new Vector3(-50, 35, -50);
 
+        Dictionary<string, Vector3[]> mapCoords = new Dictionary<string, Vector3[]>
+        {
+            { "forest", new Vector3[] { new Vector3(-50, -3, -50), new Vector3(-50, 35, -50) }},
+            { "cave", new Vector3[] { new Vector3(-50, -21, -50), new Vector3(-50, -2, -50) }},
+            { "canyon", new Vector3[] { new Vector3(-100, -6, -130), new Vector3(-100, 20, -130) }},
+            { "mountain", new Vector3[] { new Vector3(30, -9, -80), new Vector3(30, 20, -80) }},
+        };
+
+        string currentMap;
+
         object gameEnd = null;
 
         void Start()
@@ -41,6 +51,13 @@ namespace RisingLava
         public void ResetLava()
         {
             transform.position = startPos;
+        }
+
+        public void SetMap(string map)
+        {
+            currentMap = map;
+            startPos = mapCoords[map][0];
+            endPos = mapCoords[map][1];
         }
 
         public static void TagLocalPlayer()
