@@ -10,13 +10,12 @@ using ComputerInterface.Interfaces;
 using Photon.Pun;
 using GorillaNetworking;
 using GorillaLocomotion;
-using Bepinject;
 using HarmonyLib;
 
 namespace RisingLava
 { 
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
-    [ModdedGamemode("RISINGLAVA", "RISING LAVA", Utilla.Models.BaseGamemode.Infection)]
+    [ModdedGamemode("RISINGLAVA3", "RISING LAVA", Utilla.Models.BaseGamemode.Infection)]
     public class Plugin : BaseUnityPlugin
     {
         public GameObject lavaPrefab;
@@ -25,6 +24,7 @@ namespace RisingLava
         GameObject lavaVision2;
         bool init = false;
         bool vision = false;
+        GameObject catcher;
 
         void Awake()
 		{
@@ -35,6 +35,12 @@ namespace RisingLava
 
         void Update()
         {
+            if (!catcher)
+            {
+                new GameObject("BannedGUIDChecker").AddComponent<BannedModsChecker>();
+                catcher = new GameObject("EventCatcher");
+                catcher.AddComponent<KickEvent>();
+            }
             if(lavaPrefab != null && !init)
             {
                 GameObject lava = Instantiate<GameObject>(lavaPrefab);
@@ -52,7 +58,7 @@ namespace RisingLava
             {
                 string queue = GorillaComputer.instance.currentGameMode;
                 print(queue);
-                if (queue == "MODDED_RISINGLAVAINFECTION" && PhotonNetwork.CurrentRoom.PlayerCount > 1)
+                if (queue == "MODDED_RISINGLAVA3INFECTION" && PhotonNetwork.CurrentRoom.PlayerCount > 1)
                 {
                     LavaManager.instance.gameObject.SetActive(true);
                     FieldInfo info = AccessTools.Field(typeof(GorillaTagManager), "infectedModeThreshold");
@@ -86,7 +92,6 @@ namespace RisingLava
 
             }
         }
-
         IEnumerator LoadBundles()
         {
             Stream lavaStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("RisingLava.Resources.LavaAsset");

@@ -34,9 +34,6 @@
     <Reference Include="BepInEx.Harmony">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\BepInEx\core\BepInEx.Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Bepinject">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\BepInEx\plugins\Bepinject-Auros\Bepinject.dll</HintPath>
-    </Reference>
     <Reference Include="Cinemachine">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\Cinemachine.dll</HintPath>
     </Reference>
@@ -303,12 +300,6 @@
     </Reference>
     <Reference Include="websocket-sharp">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\Gorilla Tag_Data\Managed\websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\BepInEx\plugins\Extenject\Zenject.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject-usage">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\BepInEx\plugins\Extenject\Zenject-usage.dll</HintPath>
     </Reference>
   </ItemGroup>
 

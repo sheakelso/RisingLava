@@ -12,7 +12,7 @@ namespace RisingLava.Patches
 	[HarmonyPatch("OnBoxTriggered", MethodType.Normal)]
 	internal class MapCheckPatch
 	{
-		private static void Prefix(GorillaNetworkJoinTrigger __instance)
+		private static void Postfix(GorillaNetworkJoinTrigger __instance)
 		{
 			LavaManager.instance.SetMap(__instance.gameModeName);
 			return;
