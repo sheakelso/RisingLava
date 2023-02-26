@@ -29,7 +29,7 @@ namespace RisingLava
         void Awake()
 		{
             HarmonyPatches.ApplyHarmonyPatches();
-            print("RISING LAVA AWAKE");
+            //print("RISING LAVA AWAKE");
             StartCoroutine(LoadBundles());
         }
 
@@ -37,9 +37,7 @@ namespace RisingLava
         {
             if (!catcher)
             {
-                new GameObject("BannedGUIDChecker").AddComponent<BannedModsChecker>();
                 catcher = new GameObject("EventCatcher");
-                catcher.AddComponent<KickEvent>();
             }
             if(lavaPrefab != null && !init)
             {
@@ -50,14 +48,14 @@ namespace RisingLava
                     renderer.material.mainTextureScale = new Vector2(40, 40);
                 }
                 lava.AddComponent<LavaManager>();
-                print("LAVA INSTATNIATED");
+                //print("LAVA INSTATNIATED");
                 init = true;
             }
 
             if (PhotonNetwork.InRoom)
             {
                 string queue = GorillaComputer.instance.currentGameMode;
-                print(queue);
+                //print(queue);
                 if (queue == "MODDED_RISINGLAVA3INFECTION" && PhotonNetwork.CurrentRoom.PlayerCount > 1)
                 {
                     LavaManager.instance.gameObject.SetActive(true);
@@ -102,7 +100,7 @@ namespace RisingLava
             AssetBundleRequest lavaAssetReq = lavaBundle.LoadAssetAsync<GameObject>("_Hat");
             yield return lavaAssetReq;
 
-            print("LAVA LOADED");
+            //print("LAVA LOADED");
             lavaPrefab = (GameObject)lavaAssetReq.asset;
 
             Stream lavaStream1 = Assembly.GetExecutingAssembly().GetManifestResourceStream("RisingLava.Resources.LavaVision");
@@ -113,7 +111,7 @@ namespace RisingLava
             AssetBundleRequest lavaAssetReq1 = lavaBundle1.LoadAssetAsync<GameObject>("_Hat");
             yield return lavaAssetReq1;
 
-            print("LAVA LOADED");
+            //print("LAVA LOADED");
             lavaVisionPrefab = (GameObject)lavaAssetReq1.asset;
 
             lavaVision = Instantiate<GameObject>(lavaVisionPrefab);
